@@ -1,4 +1,4 @@
-# Astro & Tailwind CSS Template
+# Welcome to Myfolio. An Astro & Tailwind CSS Template
 
 Built by [Mike Andreuzza](https://michaelandreuzza.com) with Astro & Tailwind CSS under the [Creative Commons Attribution license](https://windbasics.com/license)
 
