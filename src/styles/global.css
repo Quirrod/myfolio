@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:
+/* Add CSS for the slide-down animation */
+.slide-down {
+  display: none;
+  animation: slideDown 0.5s ease-in-out;
+}
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
