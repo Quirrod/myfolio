@@ -1,14 +1,53 @@
-<section class="bg-white">
-  <div class="items-center w-full px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
-    <div>
-      <p class="mt-8 text-5xl font-medium tracking-tighter text-black">
-       windbasics
+---
+import { work } from "../../data/work.json";
+---
+
+<section>
+  <div
+    class="text-zinc-500 text-xs flex flex-col lg:flex-row gap-4 justify-between w-full font-medium px-8 md:px-12 lg:px-24 py-6">
+    <div class="flex flex-row gap-4 justify-between">
+      <p>
+        <span>Lenny</span>
+        <span>Arriaga</span>
       </p>
-      <p class="max-w-xl  mt-4 text-lg tracking-tight text-gray-600">
-        If you could kick the person in the pants responsible for most of your
-        trouble, you wouldn't sit for a month
+      <p>
+        <span>Web</span>
+        <span>Developer</span>
       </p>
     </div>
-
+    <p>
+      <a class="underline" href="#_">hey@Lenny.com</a>
+    </p>
+  </div>
+  <div
+    class="px-8 md:px-12 lg:px-24 py-24 lg:pt-64 text-center mx-auto text-zinc-500">
+    <p class="max-w-xl text-zinc-500 text-xl mx-auto font-serif">
+      <em>
+        Lenny Arriaga is an non award-winning full-stuck wannanbe developer,
+        based in Ontrio, Canada. Lead developer at Wind Basic, his work is
+        focused on creating bespoke, engaging & effective digital experiences.
+      </em>
+    </p>
+    <div
+      class="grid grid-cols-1 gap-4 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-24 max-w-7xl mx-auto">
+      {
+        work.map((template) => (
+          <>
+            <a
+              href={template.link}
+              class="bg-zinc-100 rounded-md overflow-hidden ">
+              <div class="p-4 lg:px-12 lg:py-24 ">
+                <img
+                  class=" rounded-lg shadow hover:shaodow-3xl duration-500 hover:-translate-y-4"
+                  src={template.img}
+                  alt="#"
+                />
+                <p class="text-zinc-500 text-sm mt-8"> {template.title}</p>
+              </div>
+            </a>
+          </>
+        ))
+      }
+    </div>
   </div>
 </section>
