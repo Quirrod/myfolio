@@ -1,48 +1,61 @@
 ---
 import { work } from "../../data/work.json";
+import Iconoir from 'iconoir/icons/iconoir.svg';
 ---
 
 <section>
   <div
-    class="text-zinc-500 text-xs flex flex-col lg:flex-row gap-4 justify-between w-full font-medium px-8 md:px-12 lg:px-24 py-6">
+    class="text-zinc-500 text-xs flex flex-col lg:flex-row gap-4 justify-between w-full font-medium px-8 md:px-12 lg:px-24 py-6"
+  >
     <div class="flex flex-row gap-4 justify-between">
       <p>
-        <span>Michael</span>
-        <span>Andreuzza</span>
+        <span>Joel</span>
+        <span>Jarro</span>
       </p>
       <p>
         <span>Web</span>
         <span>Developer</span>
       </p>
     </div>
-    <p>
-      <a class="underline" href="#_">hey@michaelandreuzza.com</a>
+    <p class="flex flex-row gap-4 justify-between">
+      <a href='https://github.com/Quirrod' target='_blank'>
+        <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="#000000"><path stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M21 8v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5ZM7 17v-7"></path><path stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M11 17v-3.25M11 10v3.75m0 0c0-3.75 6-3.75 6 0V17M7 7.01l.01-.011"></path></svg>
+      </a>
+      <a href='https://www.linkedin.com/in/joel-jarro/' target='_blank'>
+        <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="#000000"><path stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path><path stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M14.333 19v-1.863c.025-.31-.018-.62-.126-.913a2.18 2.18 0 0 0-.5-.781c2.093-.227 4.293-1 4.293-4.544 0-.906-.358-1.778-1-2.434a3.211 3.211 0 0 0-.06-2.448s-.787-.227-2.607.961a9.152 9.152 0 0 0-4.666 0c-1.82-1.188-2.607-.96-2.607-.96A3.211 3.211 0 0 0 7 8.464a3.482 3.482 0 0 0-1 2.453c0 3.519 2.2 4.291 4.293 4.544a2.18 2.18 0 0 0-.496.773 2.134 2.134 0 0 0-.13.902V19"></path><path stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9.667 17.702c-2 .631-3.667 0-4.667-1.948"></path></svg>
+      </a>
+      <a class="underline" href="mailto:joelqjarroq@gmail.com" target='_blank'
+        >joelqjarroq@gmail.com</a
+      >
     </p>
   </div>
-  <div
-    class="px-8 md:px-12 lg:px-24 py-24 lg:pt-64 text-center mx-auto text-zinc-500">
+  <div class="px-8 md:px-12 lg:px-24 pb-24 text-center mx-auto text-zinc-500">
     <p class="max-w-xl text-zinc-500 text-xl mx-auto font-serif">
       <em>
-        Michael Andreuzza is an non award-winning full-stuck wannanbe developer,
-        based in Ontrio, Canada. Lead developer at Wind Basic, his work is
-        focused on creating bespoke, engaging & effective digital experiences.
+        👋 Hey there! I'm a web developer focused on creating awesome user
+        experiences using React and Angular. 💻 I'm passionate about writing
+        clean, efficient code that brings ideas to life.
       </em>
     </p>
+
     <div
-      class="grid grid-cols-1 gap-4 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-24 max-w-7xl mx-auto">
+      class="grid grid-cols-1 gap-4 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-24 max-w-7xl mx-auto"
+    >
       {
         work.map((template) => (
           <>
             <a
               href={template.link}
-              class="bg-zinc-100 rounded-md overflow-hidden ">
+              class="bg-zinc-100 rounded-md overflow-hidden "
+            >
               <div class="p-4 lg:px-12 lg:py-24 ">
                 <img
                   class=" rounded-lg shadow hover:shaodow-3xl duration-500 hover:-translate-y-4"
                   src={template.img}
-                  alt="#"
+                  alt={template.title}
                 />
                 <p class="text-zinc-500 text-sm mt-8"> {template.title}</p>
+                <p class="text-zinc-500 text-sm">{template.description}</p>
               </div>
             </a>
           </>
