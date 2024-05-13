@@ -24,6 +24,14 @@ const three: Template  = {
   description: 'A simple and beatiful Movie directory'
 };
 
+const three: Template  = {
+  link: "https://pr27f-vqaaa-aaaan-qmhqa-cai.icp0.io/",
+  img: "https://quirrod.github.io/myfolio/extension_ticket.png",
+  title: "Extension Ticket",
+  description: 'Tickets selling (FRONTEND) '
+};
+
+
 export const bytitle = {
   one,
   two,
