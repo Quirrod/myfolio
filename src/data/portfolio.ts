@@ -122,6 +122,25 @@ export const skills: { group: string; items: string[] }[] = [
   },
 ];
 
+export interface Stat {
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+export const stats: Stat[] = [
+  { value: 4, suffix: "", label: "years building production systems" },
+  { value: 120, suffix: "", label: "merged pull requests on one US SaaS" },
+  { value: 20, suffix: "+", label: "external platforms integrated" },
+  { value: 12, suffix: "", label: "crates in my board-game engine" },
+];
+
+export const marquee = [
+  "TypeScript", "NestJS", "Node.js", "React", "Java 21", "Spring Boot",
+  "PostgreSQL", "MySQL", "GraphQL", "REST", "Docker", "AWS", "Rust",
+  "TypeORM", "Claude Code", "Linux",
+];
+
 export const roles = [
   "backend systems",
   "third-party integrations",

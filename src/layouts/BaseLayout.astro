@@ -4,48 +4,127 @@ import Nav from "@/components/landing/Nav.astro";
 ---
 
 <html lang="en" class="scroll-smooth">
-  <head>
-    <BaseHead />
-  </head>
-  <body
-    class="bg-white text-zinc-800 antialiased selection:bg-orange-200 selection:text-zinc-900 dark:bg-zinc-950 dark:text-zinc-300 dark:selection:bg-orange-500/30 dark:selection:text-white"
-  >
-    <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div class="blob blob-a"></div>
-      <div class="blob blob-b"></div>
+  <head><BaseHead /></head>
+  <body>
+    <div class="scroll-progress" id="scroll-progress"></div>
+    <div class="ambient" aria-hidden="true">
+      <div class="mesh mesh-a"></div>
+      <div class="mesh mesh-b"></div>
+      <div class="mesh mesh-c"></div>
+      <div class="grain"></div>
     </div>
+    <div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
     <Nav />
     <main><slot /></main>
 
     <script is:inline>
-      // Reveal on scroll
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* reveal on scroll */
       (function () {
         var els = document.querySelectorAll("[data-reveal]");
-        if (!("IntersectionObserver" in window)) {
+        if (reduce || !("IntersectionObserver" in window)) {
           els.forEach(function (el) { el.classList.add("is-visible"); });
           return;
         }
-        var io = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                io.unobserve(entry.target);
-              }
-            });
-          },
-          { rootMargin: "0px 0px -10% 0px", threshold: 0.08 }
-        );
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+          });
+        }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
         els.forEach(function (el) { io.observe(el); });
       })();
 
-      // Theme toggle
+      /* scroll progress */
       (function () {
-        var btn = document.getElementById("theme-toggle");
-        if (!btn) return;
-        btn.addEventListener("click", function () {
-          var dark = document.documentElement.classList.toggle("dark");
-          try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
+        var bar = document.getElementById("scroll-progress");
+        if (!bar) return;
+        var tick = false;
+        function upd() {
+          var h = document.documentElement;
+          var max = h.scrollHeight - h.clientHeight;
+          bar.style.transform = "scaleX(" + (max > 0 ? h.scrollTop / max : 0) + ")";
+          tick = false;
+        }
+        addEventListener("scroll", function () {
+          if (!tick) { tick = true; requestAnimationFrame(upd); }
+        }, { passive: true });
+        upd();
+      })();
+
+      /* cursor spotlight */
+      (function () {
+        var sp = document.getElementById("spotlight");
+        if (!sp || reduce || matchMedia("(hover: none)").matches) return;
+        var x = 0, y = 0, tick = false;
+        addEventListener("pointermove", function (e) {
+          x = e.clientX; y = e.clientY;
+          if (!tick) {
+            tick = true;
+            requestAnimationFrame(function () {
+              sp.style.setProperty("--x", x + "px");
+              sp.style.setProperty("--y", y + "px");
+              sp.style.opacity = "1";
+              tick = false;
+            });
+          }
+        }, { passive: true });
+      })();
+
+      /* count-up stats */
+      (function () {
+        var nums = document.querySelectorAll("[data-count]");
+        if (!nums.length) return;
+        if (reduce || !("IntersectionObserver" in window)) {
+          nums.forEach(function (n) { n.textContent = n.getAttribute("data-count"); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            var el = e.target, target = +el.getAttribute("data-count"), t0 = null;
+            function step(ts) {
+              if (!t0) t0 = ts;
+              var p = Math.min((ts - t0) / 1100, 1);
+              var eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.round(target * eased);
+              if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+            io.unobserve(el);
+          });
+        }, { threshold: 0.6 });
+        nums.forEach(function (n) { io.observe(n); });
+      })();
+
+      /* card tilt */
+      (function () {
+        if (reduce || matchMedia("(hover: none)").matches) return;
+        document.querySelectorAll("[data-tilt]").forEach(function (card) {
+          card.addEventListener("pointermove", function (e) {
+            var r = card.getBoundingClientRect();
+            var px = (e.clientX - r.left) / r.width - 0.5;
+            var py = (e.clientY - r.top) / r.height - 0.5;
+            card.style.setProperty("--rx", (-py * 4).toFixed(2) + "deg");
+            card.style.setProperty("--ry", (px * 5).toFixed(2) + "deg");
+            card.style.setProperty("--mx", ((px + 0.5) * 100).toFixed(1) + "%");
+            card.style.setProperty("--my", ((py + 0.5) * 100).toFixed(1) + "%");
+          });
+          card.addEventListener("pointerleave", function () {
+            card.style.setProperty("--rx", "0deg");
+            card.style.setProperty("--ry", "0deg");
+          });
+        });
+      })();
+
+      /* theme toggle */
+      (function () {
+        var b = document.getElementById("theme-toggle");
+        if (!b) return;
+        b.addEventListener("click", function () {
+          var d = document.documentElement.classList.toggle("dark");
+          try { localStorage.setItem("theme", d ? "dark" : "light"); } catch (e) {}
         });
       })();
     </script>

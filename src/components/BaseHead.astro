@@ -5,25 +5,22 @@ const title = "Joel Jarro — Software Engineer";
 const description =
   "Software engineer in La Paz, Bolivia. Backend and full-stack systems in TypeScript, NestJS, Node.js and Java 21 with Spring Boot, third-party platform integrations, and data correctness where approximately right is a failure.";
 const url = "https://quirrod.github.io/myfolio/";
-const ogImage = `${base}/me.jpeg`;
 ---
 
 <meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{title}</title>
 <meta name="author" content="Joel Jarro" />
-<meta name="title" content={title} />
 <meta name="description" content={description} />
-<meta name="theme-color" content="#0b0b0e" media="(prefers-color-scheme: dark)" />
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0a0a0c" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
 <link rel="canonical" href={url} />
 
 <meta property="og:type" content="website" />
 <meta property="og:url" content={url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={ogImage} />
+<meta property="og:image" content={`${base}/me.jpeg`} />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
@@ -32,19 +29,16 @@ const ogImage = `${base}/me.jpeg`;
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap"
   rel="stylesheet"
 />
 
 <script is:inline>
-  // Set theme before first paint so there is no flash.
   (function () {
     try {
-      var stored = localStorage.getItem("theme");
-      var dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var s = localStorage.getItem("theme");
+      var dark = s ? s === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
       document.documentElement.classList.toggle("dark", dark);
-    } catch (e) {
-      /* private mode: fall back to light */
-    }
+    } catch (e) {}
   })();
 </script>

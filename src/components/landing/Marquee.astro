@@ -1,0 +1,11 @@
+---
+import { marquee } from "../../data/portfolio";
+const row = [...marquee, ...marquee];
+---
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    {row.map((m) => (
+      <span class="marquee-item">{m}<span class="marquee-sep">◆</span></span>
+    ))}
+  </div>
+</div>

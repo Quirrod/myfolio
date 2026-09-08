@@ -1,24 +1,20 @@
 ---
 const year = new Date().getFullYear();
 ---
-<section id="contact" class="mx-auto max-w-5xl px-6 py-16 sm:px-8">
-  <div
-    class="rounded-2xl border border-zinc-200 bg-zinc-50/60 p-8 sm:p-12 dark:border-zinc-800 dark:bg-zinc-900/40"
-    data-reveal
-  >
-    <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-white">Get in touch</h2>
-    <p class="mt-2 max-w-lg text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-      I work remote and asynchronous, from La Paz on UTC-4, which overlaps a full US working day.
-      The fastest way to reach me is email.
+<section id="contact" class="section">
+  <div class="contact" data-reveal data-tilt>
+    <div class="card-glow"></div>
+    <p class="eyebrow">04 — Contact</p>
+    <h2 class="contact-title">Let's build something<br /><em>worth getting right.</em></h2>
+    <p class="contact-text">
+      I work remote and asynchronous from La Paz on UTC-4, which overlaps a full US working day.
+      Email is the fastest way to reach me.
     </p>
-    <div class="mt-6 flex flex-wrap gap-3">
-      <a href="mailto:joeljarro2@gmail.com" class="btn-primary">joeljarro2@gmail.com</a>
-      <a href="https://github.com/Quirrod" target="_blank" rel="noopener" class="btn-ghost">GitHub</a>
-      <a href="https://www.linkedin.com/in/joel-jarro/" target="_blank" rel="noopener" class="btn-ghost">LinkedIn</a>
+    <div class="cta-row">
+      <a href="mailto:joeljarro2@gmail.com" class="btn btn-primary">joeljarro2@gmail.com</a>
+      <a href="https://github.com/Quirrod" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+      <a href="https://www.linkedin.com/in/joel-jarro/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
     </div>
   </div>
-
-  <p class="mt-10 text-center text-xs text-zinc-400 dark:text-zinc-600">
-    © {year} Joel Jarro · Built with Astro and Tailwind
-  </p>
+  <p class="colophon">© {year} Joel Jarro · Built with Astro and Tailwind</p>
 </section>

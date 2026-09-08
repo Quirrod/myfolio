@@ -1,69 +1,60 @@
 ---
-import { roles } from "../../data/portfolio";
+import { roles, stats } from "../../data/portfolio";
 ---
-<section id="top" class="mx-auto max-w-5xl px-6 pb-20 pt-20 sm:px-8 sm:pt-28">
-  <p
-    class="mb-5 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/60 px-3 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400"
-    data-reveal
-  >
-    <span class="relative flex h-1.5 w-1.5">
-      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
-      <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-    </span>
+<section id="top" class="hero">
+  <p class="badge" data-reveal>
+    <span class="pulse"><span></span><span></span></span>
     La Paz, Bolivia · UTC-4 · open to remote
   </p>
 
-  <h1
-    class="max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight text-zinc-900 sm:text-6xl dark:text-white"
-    data-reveal
-    style="--reveal-delay: 60ms"
-  >
-    Software engineer who builds
-    <span class="relative inline-block">
-      <span class="rotator text-orange-600 dark:text-orange-400" aria-live="polite">
-        {roles.map((r, i) => (
-          <span class="rotator-item" data-i={i} aria-hidden={i !== 0 ? "true" : "false"}>{r}</span>
-        ))}
-      </span>
+  <h1 class="display" data-reveal style="--reveal-delay:60ms">
+    Software engineer<br />
+    who builds
+    <span class="rotator">
+      {roles.map((r, i) => (
+        <span class="rotator-item" data-i={i} aria-hidden={i !== 0}>{r}</span>
+      ))}
     </span>
   </h1>
 
-  <p
-    class="mt-7 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400"
-    data-reveal
-    style="--reveal-delay: 140ms"
-  >
-    Four years across backend and full-stack systems in <strong class="font-medium text-zinc-900 dark:text-zinc-200">TypeScript, NestJS and Node.js</strong>,
-    and <strong class="font-medium text-zinc-900 dark:text-zinc-200">Java 21 with Spring Boot</strong>, over PostgreSQL and MySQL.
-    I like the problems where being approximately right is a failure: tax documents that must file, revenue figures a
-    customer will read, integrations against APIs that go down on their own schedule.
+  <p class="lede" data-reveal style="--reveal-delay:150ms">
+    Four years across backend and full-stack systems in <em>TypeScript, NestJS and Node.js</em>,
+    and <em>Java&nbsp;21 with Spring Boot</em>, over PostgreSQL and MySQL. I like the problems where
+    being approximately right is a failure: tax documents that must file, revenue figures a customer
+    will read, integrations against APIs that go down on their own schedule.
   </p>
 
-  <div class="mt-9 flex flex-wrap items-center gap-3" data-reveal style="--reveal-delay: 220ms">
-    <a href="#work" class="btn-primary">See the work</a>
-    <a href="https://github.com/Quirrod" target="_blank" rel="noopener" class="btn-ghost">GitHub</a>
-    <a href="https://www.linkedin.com/in/joel-jarro/" target="_blank" rel="noopener" class="btn-ghost">LinkedIn</a>
+  <div class="cta-row" data-reveal style="--reveal-delay:230ms">
+    <a href="#work" class="btn btn-primary">See the work</a>
+    <a href="mailto:joeljarro2@gmail.com" class="btn btn-ghost">Get in touch</a>
+    <a href="https://github.com/Quirrod" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
   </div>
+
+  <dl class="stats" data-reveal style="--reveal-delay:320ms">
+    {stats.map((s) => (
+      <div class="stat">
+        <dt class="stat-value"><span data-count={s.value}>0</span>{s.suffix}</dt>
+        <dd class="stat-label">{s.label}</dd>
+      </div>
+    ))}
+  </dl>
 </section>
 
 <script is:inline>
   (function () {
-    var wrap = document.querySelector(".rotator");
-    if (!wrap) return;
-    var items = wrap.querySelectorAll(".rotator-item");
+    var w = document.querySelector(".rotator");
+    if (!w) return;
+    var items = w.querySelectorAll(".rotator-item");
     if (items.length < 2) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      items[0].classList.add("is-active");
-      return;
-    }
-    var i = 0;
     items[0].classList.add("is-active");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var i = 0;
     setInterval(function () {
       items[i].classList.remove("is-active");
       items[i].setAttribute("aria-hidden", "true");
       i = (i + 1) % items.length;
       items[i].classList.add("is-active");
       items[i].setAttribute("aria-hidden", "false");
-    }, 2600);
+    }, 2800);
   })();
 </script>
