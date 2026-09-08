@@ -247,6 +247,49 @@ em { font-family: "Instrument Serif", Newsreader, serif; font-style: italic; fon
 .link-arrow:hover::after { transform: translateX(4px); }
 .empty { padding: 3rem 0; text-align: center; font-size: 0.875rem; color: var(--fg-faint); }
 
+
+/* ---------- selected work: case studies ---------- */
+.section-sub { margin-top: 0.7rem; max-width: 34rem; font-size: 0.85rem; line-height: 1.6; color: var(--fg-faint); }
+
+.grid-3 { margin-top: 1.25rem; }
+@media (min-width: 900px) { .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+.card-body-plain { gap: 0; }
+
+.kind {
+  display: inline-flex; align-items: center; padding: 0.12rem 0.5rem;
+  border-radius: 0.3rem; border: 1px solid var(--line); background: var(--bg-soft);
+  font-size: 0.66rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.kind-client { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); color: var(--accent); background: var(--accent-soft); }
+
+.card-study { border-left: 2px solid color-mix(in srgb, var(--accent) 30%, var(--line)); }
+.study-title { margin-top: 0.7rem; font-size: 1.12rem; }
+.card-context { margin-top: 0.25rem; font-size: 0.78rem; color: var(--fg-faint); }
+
+.label {
+  display: block; margin-bottom: 0.25rem;
+  font-size: 0.63rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.card-problem {
+  margin-top: 0.9rem; padding-left: 0.8rem;
+  border-left: 1px solid var(--line);
+  font-size: 0.85rem; line-height: 1.65; color: var(--fg-muted);
+}
+.card-study .card-desc { margin-top: 0.9rem; }
+
+.no-link { font-size: 0.78rem; color: var(--fg-faint); font-style: italic; }
+
+.card-small .card-title { font-size: 0.95rem; }
+.card-small .card-desc { font-size: 0.83rem; }
+
+.side-head { display: flex; align-items: center; gap: 1rem; margin-top: 3.5rem; }
+.side-head.is-hidden { display: none; }
+.side-title { font-size: 0.72rem; font-weight: 650; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-faint); white-space: nowrap; }
+.side-rule { flex: 1; height: 1px; background: var(--line); }
+
 /* ============================ timeline ============================ */
 .timeline { margin-top: 2.75rem; padding-left: 1.6rem; border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 2.5rem; }
 @media (min-width: 640px) { .timeline { padding-left: 2.2rem; } }

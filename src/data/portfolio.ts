@@ -1,5 +1,8 @@
 export interface Project {
   title: string;
+  kind: "Personal project" | "Client work" | "Side project";
+  context?: string;
+  problem?: string;
   description: string;
   link?: string;
   repo?: string;
@@ -7,7 +10,7 @@ export interface Project {
   tags: string[];
   year: string;
   featured?: boolean;
-  accent?: string;
+  proprietary?: boolean;
 }
 
 const BASE = "https://quirrod.github.io/myfolio";
@@ -15,18 +18,57 @@ const BASE = "https://quirrod.github.io/myfolio";
 export const projects: Project[] = [
   {
     title: "BGG — digital board-game engine",
+    kind: "Personal project",
+    context: "Rust, in progress",
+    problem:
+      "Every hobby board-game engine I looked at hard-coded one game's rules into its UI and networking, so a second title meant forking the whole thing.",
     description:
-      "A board-game engine architected so one engine runs many titles instead of hard-coding a single game. 12-crate Rust workspace with explicit boundaries between rules core, presentation, networking and game definitions. Rules execute on a virtual machine split into separate VMs for setup and play, and a visual graph editor compiles a designed graph into executable rules. Architecture decisions are kept in-repo.",
+      "A 12-crate workspace with explicit boundaries between rules core, presentation, networking and game definitions, so adding a title is writing a definition rather than forking the engine. Rules execute on a virtual machine deliberately split into two VMs, one for setup and one for play, and a visual graph editor compiles a designed graph into executable rules. The master plan, VM specification and game-definition format live in-repo as decision records.",
     repo: "https://github.com/Quirrod/bgg",
     tags: ["Rust", "Architecture", "VM design", "Game engine"],
     year: "2026 — present",
     featured: true,
-    accent: "from-orange-500/20 to-amber-500/5",
+  },
+  {
+    title: "Electronic tax-invoicing integration",
+    kind: "Client work",
+    context: "Breick-Incadex · Bolivian SIN via Emizor",
+    problem:
+      "Invoices must be filed with the national tax authority in real time. When their service is unreachable, the sale still has to happen and the document still has to file eventually. Losing one is a legal problem, not a bug.",
+    description:
+      "I designed the API and XML contracts, service authentication, an offline contingency mode that queues and automatically resubmits, and alerting on rejected or incomplete documents. The governing decision was that no fiscal document is ever lost when the provider goes down.",
+    tags: ["NestJS", "TypeScript", "Integrations", "Compliance"],
+    year: "2023 — 2026",
+    proprietary: true,
+  },
+  {
+    title: "Monolith to domain-modular API",
+    kind: "Client work",
+    context: "Breick-Incadex · ERP platform",
+    problem:
+      "A single Express application had grown to cover sales, stock, billing, pricing and promotions at once, and every change risked the other four.",
+    description:
+      "I led the decomposition into a domain-modular NestJS architecture, defining the code boundaries and integration contracts before any code moved, with TypeORM, JWT authentication and a GraphQL layer over the same services. Those domains still deploy as one unit, which was right at that size; the contracts are what would make extracting one later a deployment change rather than a rewrite.",
+    tags: ["NestJS", "Architecture", "PostgreSQL", "GraphQL"],
+    year: "2023 — 2026",
+    proprietary: true,
+  },
+  {
+    title: "20+ platform integrations at scale",
+    kind: "Client work",
+    context: "Ensolvers · client product Hyros, a US ad-attribution SaaS",
+    problem:
+      "Revenue attribution depended on data arriving correctly from payment processors, CRMs, marketing tools and ad networks, none of which I controlled, all of which failed differently.",
+    description:
+      "I built and maintained integrations across Stripe, PayPal, Shopify, WooCommerce, HubSpot, Klaviyo, Zapier, Google Ads and more, covering webhook ingestion, OAuth connection flows, API pagination and event mapping. I also fixed the revenue-correctness defects those pipelines produced: mispriced imports, uncounted discounts and refunds, duplicated sales, currency mismatches and rounding errors.",
+    tags: ["Java 21", "Spring Boot", "Integrations", "REST"],
+    year: "2023 — 2026",
+    proprietary: true,
   },
   {
     title: "Bugabooo",
-    description:
-      "A web application for developers to collaborate, share code and get feedback on it.",
+    kind: "Side project",
+    description: "A web app for developers to collaborate, share code and get feedback on it.",
     link: "https://bugaboo-kohl.vercel.app",
     img: `${BASE}/bugaboo-page.png`,
     tags: ["React", "TypeScript", "Full-stack"],
@@ -34,8 +76,8 @@ export const projects: Project[] = [
   },
   {
     title: "Extension Ticket",
-    description:
-      "Front end for a ticket-selling platform, deployed on the Internet Computer.",
+    kind: "Side project",
+    description: "Front end for a ticket-selling platform, deployed on the Internet Computer.",
     link: "https://pr27f-vqaaa-aaaan-qmhqa-cai.icp0.io/",
     img: `${BASE}/extension_ticket.png`,
     tags: ["React", "Front end", "Web3"],
@@ -43,17 +85,11 @@ export const projects: Project[] = [
   },
   {
     title: "Knock Note",
+    kind: "Side project",
     description: "A small, fast note-taking app.",
     link: "https://ensolver-challenge.vercel.app",
     img: `${BASE}/ensolver.png`,
     tags: ["React", "TypeScript"],
-    year: "2023",
-  },
-  {
-    title: "Movie Log",
-    description: "A simple, clean directory for browsing films.",
-    img: `${BASE}/movielog.png`,
-    tags: ["React", "REST API"],
     year: "2023",
   },
 ];

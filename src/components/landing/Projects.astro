@@ -2,41 +2,76 @@
 import { projects } from "../../data/portfolio";
 const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
 const crates = ["rules", "vm", "net", "present", "defs", "editor", "server", "client", "core"];
+const engineering = projects.filter((p) => p.kind !== "Side project");
+const side = projects.filter((p) => p.kind === "Side project");
 ---
 <section id="work" class="section">
   <div class="section-head" data-reveal>
     <div>
       <p class="eyebrow">01 — Work</p>
       <h2 class="section-title">Selected work</h2>
+      <p class="section-sub">
+        Client work is described without links or screenshots, since the systems are proprietary.
+      </p>
     </div>
-    <div class="filters" role="group" aria-label="Filter projects by technology">
+    <div class="filters" role="group" aria-label="Filter by technology">
       <button class="chip is-active" data-filter="all" type="button">All</button>
       {allTags.map((t) => <button class="chip" data-filter={t} type="button">{t}</button>)}
     </div>
   </div>
 
   <div class="grid">
-    {projects.map((p, i) => (
+    {engineering.map((p, i) => (
       <article
-        class:list={["card", p.featured && "card-featured"]}
+        class:list={["card", p.featured && "card-featured", p.proprietary && "card-study"]}
         data-tags={p.tags.join("|")}
         data-tilt
         data-reveal
         style={`--reveal-delay:${60 + i * 70}ms`}
       >
         <div class="card-glow"></div>
-        <div class="card-body">
-          {p.img ? (
-            <div class="shot">
-              <img src={p.img} alt={p.title} loading="lazy" decoding="async" />
-            </div>
-          ) : (
+        <div class:list={["card-body", !p.img && !p.featured && "card-body-plain"]}>
+          {p.featured && (
             <div class="crates" aria-hidden="true">
-              {crates.map((c, ci) => (
-                <span class="crate" style={`--d:${ci * 45}ms`}>{c}</span>
-              ))}
+              {crates.map((c, ci) => <span class="crate" style={`--d:${ci * 45}ms`}>{c}</span>)}
             </div>
           )}
+          <div class="card-text">
+            <div class="card-top">
+              <span class:list={["kind", p.proprietary && "kind-client"]}>{p.kind}</span>
+              <span class="card-year">{p.year}</span>
+            </div>
+            <h3 class="card-title study-title">{p.title}</h3>
+            {p.context && <p class="card-context">{p.context}</p>}
+            {p.problem && (
+              <p class="card-problem"><span class="label">Problem</span>{p.problem}</p>
+            )}
+            <p class="card-desc">
+              {p.problem && <span class="label">What I did</span>}{p.description}
+            </p>
+            <div class="tags">{p.tags.map((t) => <span class="tag">{t}</span>)}</div>
+            <div class="card-links">
+              {p.repo && <a href={p.repo} target="_blank" rel="noopener" class="link-arrow">Read the code</a>}
+              {p.link && <a href={p.link} target="_blank" rel="noopener" class="link-arrow">Live site</a>}
+              {p.proprietary && <span class="no-link">Proprietary — no public link</span>}
+            </div>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="side-head" data-reveal>
+    <h3 class="side-title">Side projects</h3>
+    <span class="side-rule"></span>
+  </div>
+
+  <div class="grid grid-3">
+    {side.map((p, i) => (
+      <article class="card card-small" data-tags={p.tags.join("|")} data-tilt data-reveal style={`--reveal-delay:${i * 70}ms`}>
+        <div class="card-glow"></div>
+        <div class="card-body">
+          <div class="shot"><img src={p.img} alt={p.title} loading="lazy" decoding="async" /></div>
           <div class="card-text">
             <div class="card-top">
               <h3 class="card-title">{p.title}</h3>
@@ -46,7 +81,6 @@ const crates = ["rules", "vm", "net", "present", "defs", "editor", "server", "cl
             <div class="tags">{p.tags.map((t) => <span class="tag">{t}</span>)}</div>
             <div class="card-links">
               {p.link && <a href={p.link} target="_blank" rel="noopener" class="link-arrow">Live site</a>}
-              {p.repo && <a href={p.repo} target="_blank" rel="noopener" class="link-arrow">Read the code</a>}
             </div>
           </div>
         </div>
@@ -61,17 +95,19 @@ const crates = ["rules", "vm", "net", "present", "defs", "editor", "server", "cl
     var chips = document.querySelectorAll(".chip");
     var cards = document.querySelectorAll(".card");
     var empty = document.getElementById("filter-empty");
+    var heads = document.querySelectorAll(".side-head");
     chips.forEach(function (chip) {
       chip.addEventListener("click", function () {
         var f = chip.getAttribute("data-filter");
         chips.forEach(function (c) { c.classList.remove("is-active"); });
         chip.classList.add("is-active");
-        var shown = 0;
+        var shown = 0, sideShown = 0;
         cards.forEach(function (card) {
           var ok = f === "all" || (card.getAttribute("data-tags") || "").split("|").indexOf(f) !== -1;
           card.classList.toggle("is-hidden", !ok);
-          if (ok) shown++;
+          if (ok) { shown++; if (card.classList.contains("card-small")) sideShown++; }
         });
+        heads.forEach(function (h) { h.classList.toggle("is-hidden", sideShown === 0); });
         if (empty) empty.hidden = shown !== 0;
       });
     });
