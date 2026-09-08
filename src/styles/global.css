@@ -202,7 +202,7 @@ em { font-family: "Instrument Serif", Newsreader, serif; font-style: italic; fon
   transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s, border-color 0.3s;
 }
 .card:hover { box-shadow: var(--shadow-lg); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
-.card-featured { grid-column: 1 / -1; }
+.card-featured, .card-wide { grid-column: 1 / -1; }
 .card.is-hidden { display: none; }
 
 .card-glow {
@@ -213,7 +213,7 @@ em { font-family: "Instrument Serif", Newsreader, serif; font-style: italic; fon
 .card:hover .card-glow, .contact:hover .card-glow { opacity: 1; }
 
 .card-body { position: relative; display: flex; flex-direction: column; gap: 1.1rem; height: 100%; }
-@media (min-width: 768px) { .card-featured .card-body { flex-direction: row; align-items: flex-start; gap: 2rem; } }
+@media (min-width: 768px) { .card-wide .card-body { flex-direction: row; align-items: flex-start; gap: 2rem; } }
 
 .shot { overflow: hidden; border-radius: 0.7rem; border: 1px solid var(--line); background: var(--bg-soft); }
 .shot img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; object-position: top; transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
@@ -247,6 +247,55 @@ em { font-family: "Instrument Serif", Newsreader, serif; font-style: italic; fon
 .link-arrow:hover::after { transform: translateX(4px); }
 .empty { padding: 3rem 0; text-align: center; font-size: 0.875rem; color: var(--fg-faint); }
 
+
+
+/* ---------- architecture diagrams ---------- */
+.dgm { flex-shrink: 0; }
+@media (min-width: 768px) { .card-wide .dgm { width: 20rem; } }
+
+.dgm-svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+.dgm-node rect { fill: var(--bg-soft); stroke: var(--line); stroke-width: 1; transition: stroke 0.35s, fill 0.35s; }
+.dgm-node text {
+  fill: var(--fg-muted); font-size: 11px; font-weight: 600; text-anchor: middle;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; transition: fill 0.35s;
+}
+.dgm-node .dgm-sub { font-size: 8px; font-weight: 500; fill: var(--fg-faint); }
+.card:hover .dgm-node rect { stroke: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.card:hover .dgm-node text { fill: var(--fg); }
+
+.dgm-ext rect, .dgm-out rect { stroke-dasharray: 3 3; }
+.dgm-hub rect { fill: var(--accent-soft); stroke: color-mix(in srgb, var(--accent) 50%, var(--line)); }
+.dgm-warn rect { stroke: color-mix(in srgb, #eab308 55%, var(--line)); }
+.dgm-mono rect { fill: color-mix(in srgb, var(--fg) 6%, var(--bg-soft)); }
+
+.dgm-line { fill: none; stroke: var(--line); stroke-width: 1.4; transition: stroke 0.35s; }
+.card:hover .dgm-line { stroke: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+.dgm-thin { stroke-width: 0.9; }
+.dgm-dash { stroke-dasharray: 4 4; animation: dash 22s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -160; } }
+.dgm-arrow { marker-end: none; }
+.dgm-brace { fill: none; stroke: var(--line); stroke-width: 1.2; }
+
+.dgm-tag { font-size: 8px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-anchor: middle; font-family: ui-monospace, monospace; }
+.dgm-tag-fail { fill: #d97706; }
+.dgm-tag-ok { fill: var(--accent); }
+.dgm-cap { font-size: 8.5px; fill: var(--fg-faint); text-anchor: middle; font-style: italic; }
+.dgm-more { font-size: 8.5px; fill: var(--fg-faint); text-anchor: middle; font-family: ui-monospace, monospace; }
+
+.dgm-dot { fill: var(--accent); opacity: 0.9; }
+.dgm-dot-warn { fill: #eab308; }
+
+.dgm-plat rect { fill: var(--bg-soft); stroke: var(--line); stroke-width: 0.9; transition: stroke 0.35s; }
+.dgm-plat text { fill: var(--fg-faint); font-size: 8.5px; font-weight: 600; text-anchor: middle; font-family: ui-monospace, monospace; transition: fill 0.35s; }
+.card:hover .dgm-plat rect { stroke: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+.card:hover .dgm-plat text { fill: var(--fg-muted); }
+
+.dgm-domain rect { transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), stroke 0.35s; transform-box: fill-box; transform-origin: center; transition-delay: var(--d, 0ms); }
+.card:hover .dgm-domain rect { transform: translateX(4px); }
+
+.dgm-crates { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0.4rem; }
+@media (min-width: 768px) { .card-wide .dgm-crates { width: 20rem; } }
 
 /* ---------- selected work: case studies ---------- */
 .section-sub { margin-top: 0.7rem; max-width: 34rem; font-size: 0.85rem; line-height: 1.6; color: var(--fg-faint); }

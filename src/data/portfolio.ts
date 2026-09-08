@@ -11,6 +11,7 @@ export interface Project {
   year: string;
   featured?: boolean;
   proprietary?: boolean;
+  diagram?: "crates" | "invoicing" | "modular" | "integrations";
 }
 
 const BASE = "https://quirrod.github.io/myfolio";
@@ -25,6 +26,7 @@ export const projects: Project[] = [
     description:
       "A 12-crate workspace with explicit boundaries between rules core, presentation, networking and game definitions, so adding a title is writing a definition rather than forking the engine. Rules execute on a virtual machine deliberately split into two VMs, one for setup and one for play, and a visual graph editor compiles a designed graph into executable rules. The master plan, VM specification and game-definition format live in-repo as decision records.",
     repo: "https://github.com/Quirrod/bgg",
+    diagram: "crates",
     tags: ["Rust", "Architecture", "VM design", "Game engine"],
     year: "2026 — present",
     featured: true,
@@ -37,6 +39,7 @@ export const projects: Project[] = [
       "Invoices must be filed with the national tax authority in real time. When their service is unreachable, the sale still has to happen and the document still has to file eventually. Losing one is a legal problem, not a bug.",
     description:
       "I designed the API and XML contracts, service authentication, an offline contingency mode that queues and automatically resubmits, and alerting on rejected or incomplete documents. The governing decision was that no fiscal document is ever lost when the provider goes down.",
+    diagram: "invoicing",
     tags: ["NestJS", "TypeScript", "Integrations", "Compliance"],
     year: "2023 — 2026",
     proprietary: true,
@@ -49,6 +52,7 @@ export const projects: Project[] = [
       "A single Express application had grown to cover sales, stock, billing, pricing and promotions at once, and every change risked the other four.",
     description:
       "I led the decomposition into a domain-modular NestJS architecture, defining the code boundaries and integration contracts before any code moved, with TypeORM, JWT authentication and a GraphQL layer over the same services. Those domains still deploy as one unit, which was right at that size; the contracts are what would make extracting one later a deployment change rather than a rewrite.",
+    diagram: "modular",
     tags: ["NestJS", "Architecture", "PostgreSQL", "GraphQL"],
     year: "2023 — 2026",
     proprietary: true,
@@ -61,6 +65,7 @@ export const projects: Project[] = [
       "Revenue attribution depended on data arriving correctly from payment processors, CRMs, marketing tools and ad networks, none of which I controlled, all of which failed differently.",
     description:
       "I built and maintained integrations across Stripe, PayPal, Shopify, WooCommerce, HubSpot, Klaviyo, Zapier, Google Ads and more, covering webhook ingestion, OAuth connection flows, API pagination and event mapping. I also fixed the revenue-correctness defects those pipelines produced: mispriced imports, uncounted discounts and refunds, duplicated sales, currency mismatches and rounding errors.",
+    diagram: "integrations",
     tags: ["Java 21", "Spring Boot", "Integrations", "REST"],
     year: "2023 — 2026",
     proprietary: true,

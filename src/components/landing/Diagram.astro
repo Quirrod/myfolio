@@ -1,0 +1,75 @@
+---
+interface Props { kind: "crates" | "invoicing" | "modular" | "integrations" }
+const { kind } = Astro.props;
+const crates = ["rules", "vm", "net", "present", "defs", "editor", "server", "client", "core"];
+const platforms = ["Stripe", "PayPal", "Shopify", "WooCommerce", "HubSpot", "Klaviyo", "Zapier", "Google Ads"];
+const domains = ["sales", "stock", "billing", "pricing", "promos"];
+---
+
+{kind === "crates" && (
+  <div class="dgm dgm-crates" aria-hidden="true">
+    {crates.map((c, i) => <span class="crate" style={`--d:${i * 45}ms`}>{c}</span>)}
+  </div>
+)}
+
+{kind === "invoicing" && (
+  <div class="dgm" role="img" aria-label="A sale posts an invoice to the tax authority. On failure it queues and automatically resubmits until the document is filed.">
+    <svg viewBox="0 0 320 200" class="dgm-svg">
+      <g class="dgm-node"><rect x="8" y="20" width="70" height="34" rx="7"/><text x="43" y="41">Sale</text></g>
+      <g class="dgm-node"><rect x="125" y="20" width="70" height="34" rx="7"/><text x="160" y="41">API</text></g>
+      <g class="dgm-node dgm-ext"><rect x="242" y="20" width="70" height="34" rx="7"/><text x="277" y="41">SIN</text></g>
+
+      <path class="dgm-line" d="M78 37 H125"/>
+      <path class="dgm-line" d="M195 37 H242"/>
+
+      <g class="dgm-node dgm-warn"><rect x="125" y="140" width="70" height="34" rx="7"/><text x="160" y="161">queue</text></g>
+      <path class="dgm-line dgm-dash" d="M277 54 V110 Q277 122 265 122 H172 Q160 122 160 134 V140"/>
+      <path class="dgm-line dgm-dash" d="M160 140 V130 Q160 118 148 118 H80 Q68 118 68 106 V54 Q68 42 80 40 H125"/>
+
+      <text class="dgm-tag dgm-tag-fail" x="290" y="86">offline</text>
+      <text class="dgm-tag dgm-tag-ok" x="100" y="104">retry</text>
+
+      <circle class="dgm-dot" r="4"><animateMotion dur="4.4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" path="M20 37 H125 M195 37 H242"/></circle>
+      <circle class="dgm-dot dgm-dot-warn" r="4"><animateMotion dur="4.4s" repeatCount="indefinite" begin="1.2s" path="M277 54 V110 Q277 122 265 122 H172 Q160 122 160 134 V140 M160 140 V130 Q160 118 148 118 H80 Q68 118 68 106 V54 Q68 42 80 40 H125"/></circle>
+      <text class="dgm-cap" x="160" y="192">never lose a fiscal document</text>
+    </svg>
+  </div>
+)}
+
+{kind === "modular" && (
+  <div class="dgm" role="img" aria-label="One Express monolith decomposed into five NestJS domains behind explicit contracts.">
+    <svg viewBox="0 0 320 200" class="dgm-svg">
+      <g class="dgm-node dgm-mono"><rect x="10" y="52" width="96" height="96" rx="9"/><text x="58" y="96">Express</text><text x="58" y="114" class="dgm-sub">monolith</text></g>
+      <path class="dgm-line dgm-arrow" d="M112 100 H146"/>
+      <text class="dgm-tag dgm-tag-ok" x="129" y="88">split</text>
+      {domains.map((d, i) => (
+        <g class="dgm-node dgm-domain" style={`--d:${i * 90}ms`}>
+          <rect x="176" y={16 + i * 35} width="132" height="27" rx="6"/>
+          <text x="242" y={34 + i * 35}>{d}</text>
+        </g>
+      ))}
+      <path class="dgm-brace" d="M160 24 Q152 24 152 34 V92 Q152 100 146 100 Q152 100 152 108 V166 Q152 176 160 176"/>
+    </svg>
+  </div>
+)}
+
+{kind === "integrations" && (
+  <div class="dgm" role="img" aria-label="More than twenty external platforms fan into a webhook and OAuth ingest layer, then into attribution.">
+    <svg viewBox="0 0 320 200" class="dgm-svg">
+      {platforms.map((p, i) => (
+        <g class="dgm-plat" style={`--d:${i * 140}ms`}>
+          <rect x="4" y={8 + i * 23} width="88" height="18" rx="5"/>
+          <text x="48" y={21 + i * 23}>{p}</text>
+          <path class="dgm-line dgm-thin" d={`M92 ${17 + i * 23} Q140 ${17 + i * 23} 150 100`}/>
+        </g>
+      ))}
+      <text class="dgm-more" x="48" y="196">+ 12 more</text>
+      <g class="dgm-node dgm-hub"><rect x="150" y="76" width="76" height="48" rx="9"/><text x="188" y="96">ingest</text><text x="188" y="112" class="dgm-sub">webhook · OAuth</text></g>
+      <path class="dgm-line dgm-arrow" d="M226 100 H262"/>
+      <g class="dgm-node dgm-out"><rect x="262" y="76" width="54" height="48" rx="9"/><text x="289" y="96">attrib</text><text x="289" y="112" class="dgm-sub">revenue</text></g>
+      <circle class="dgm-dot" r="3.5"><animateMotion dur="3.2s" repeatCount="indefinite" path="M92 17 Q140 17 150 100"/></circle>
+      <circle class="dgm-dot" r="3.5"><animateMotion dur="3.2s" begin="0.8s" repeatCount="indefinite" path="M92 86 Q140 86 150 100"/></circle>
+      <circle class="dgm-dot" r="3.5"><animateMotion dur="3.2s" begin="1.6s" repeatCount="indefinite" path="M92 178 Q140 178 150 100"/></circle>
+    </svg>
+  </div>
+)}

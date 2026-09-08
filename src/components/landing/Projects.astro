@@ -1,7 +1,7 @@
 ---
 import { projects } from "../../data/portfolio";
+import Diagram from "./Diagram.astro";
 const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
-const crates = ["rules", "vm", "net", "present", "defs", "editor", "server", "client", "core"];
 const engineering = projects.filter((p) => p.kind !== "Side project");
 const side = projects.filter((p) => p.kind === "Side project");
 ---
@@ -23,19 +23,15 @@ const side = projects.filter((p) => p.kind === "Side project");
   <div class="grid">
     {engineering.map((p, i) => (
       <article
-        class:list={["card", p.featured && "card-featured", p.proprietary && "card-study"]}
+        class:list={["card", "card-wide", p.featured && "card-featured", p.proprietary && "card-study"]}
         data-tags={p.tags.join("|")}
         data-tilt
         data-reveal
         style={`--reveal-delay:${60 + i * 70}ms`}
       >
         <div class="card-glow"></div>
-        <div class:list={["card-body", !p.img && !p.featured && "card-body-plain"]}>
-          {p.featured && (
-            <div class="crates" aria-hidden="true">
-              {crates.map((c, ci) => <span class="crate" style={`--d:${ci * 45}ms`}>{c}</span>)}
-            </div>
-          )}
+        <div class="card-body">
+          {p.diagram && <Diagram kind={p.diagram} />}
           <div class="card-text">
             <div class="card-top">
               <span class:list={["kind", p.proprietary && "kind-client"]}>{p.kind}</span>
