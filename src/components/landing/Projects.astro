@@ -1,0 +1,95 @@
+---
+import { projects } from "../../data/portfolio";
+const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
+---
+<section id="work" class="mx-auto max-w-5xl px-6 py-16 sm:px-8">
+  <div class="mb-8 flex flex-wrap items-end justify-between gap-4" data-reveal>
+    <div>
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-white">Selected work</h2>
+      <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Personal projects and things I have shipped.</p>
+    </div>
+    <div class="flex flex-wrap gap-2" role="group" aria-label="Filter projects by technology">
+      <button class="filter-chip is-active" data-filter="all" type="button">All</button>
+      {allTags.map((t) => (
+        <button class="filter-chip" data-filter={t} type="button">{t}</button>
+      ))}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    {projects.map((p, i) => (
+      <article
+        class:list={["project-card", "group", p.featured && "md:col-span-2"]}
+        data-tags={p.tags.join("|")}
+        data-reveal
+        style={`--reveal-delay: ${60 + i * 70}ms`}
+      >
+        {p.featured && (
+          <div class={`pointer-events-none absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}></div>
+        )}
+        <div class:list={["relative flex h-full flex-col gap-4", p.featured && "md:flex-row md:items-start md:gap-8"]}>
+          {p.img ? (
+            <div class="overflow-hidden rounded-lg border border-zinc-200/80 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900">
+              <img
+                src={p.img}
+                alt={p.title}
+                loading="lazy"
+                decoding="async"
+                class="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            </div>
+          ) : (
+            <div class="crate-grid shrink-0 md:w-64" aria-hidden="true">
+              {["rules", "vm", "net", "present", "defs", "editor", "server", "client", "core"].map((c) => (
+                <span class="crate">{c}</span>
+              ))}
+            </div>
+          )}
+          <div class="flex flex-1 flex-col">
+            <div class="flex items-baseline justify-between gap-4">
+              <h3 class="font-semibold tracking-tight text-zinc-900 dark:text-white">{p.title}</h3>
+              <span class="shrink-0 text-xs tabular-nums text-zinc-400 dark:text-zinc-500">{p.year}</span>
+            </div>
+            <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{p.description}</p>
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              {p.tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+            <div class="mt-5 flex flex-wrap gap-4 pt-1">
+              {p.link && (
+                <a href={p.link} target="_blank" rel="noopener" class="link-arrow">Live site</a>
+              )}
+              {p.repo && (
+                <a href={p.repo} target="_blank" rel="noopener" class="link-arrow">Read the code</a>
+              )}
+            </div>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+  <p id="filter-empty" class="hidden py-10 text-center text-sm text-zinc-500">Nothing matches that filter.</p>
+</section>
+
+<script is:inline>
+  (function () {
+    var chips = document.querySelectorAll(".filter-chip");
+    var cards = document.querySelectorAll(".project-card");
+    var empty = document.getElementById("filter-empty");
+    if (!chips.length) return;
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        var f = chip.getAttribute("data-filter");
+        chips.forEach(function (c) { c.classList.remove("is-active"); });
+        chip.classList.add("is-active");
+        var shown = 0;
+        cards.forEach(function (card) {
+          var tags = (card.getAttribute("data-tags") || "").split("|");
+          var show = f === "all" || tags.indexOf(f) !== -1;
+          card.classList.toggle("is-hidden", !show);
+          if (show) shown++;
+        });
+        if (empty) empty.classList.toggle("hidden", shown !== 0);
+      });
+    });
+  })();
+</script>

@@ -1,16 +1,24 @@
 ---
-import { work } from "../../data/work.json";
+const year = new Date().getFullYear();
 ---
-
-<section>
+<section id="contact" class="mx-auto max-w-5xl px-6 py-16 sm:px-8">
   <div
-    class="text-zinc-400 text-xs justify-center flex flex-col lg:flex-row gap-4 lg:gap-12 w-full font-medium uppercase tracking-tight px-8 md:px-12 lg:px-24 py-6"
+    class="rounded-2xl border border-zinc-200 bg-zinc-50/60 p-8 sm:p-12 dark:border-zinc-800 dark:bg-zinc-900/40"
+    data-reveal
   >
-    <p class="max-w-2xl text-zinc-500 text-sm mx-auto">
-      contact me
-      <a href="https://github.com/Quirrod" target='_blank' class="underline underline-offset-2"
-        >Quirrod</a
-      >
+    <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-white">Get in touch</h2>
+    <p class="mt-2 max-w-lg text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+      I work remote and asynchronous, from La Paz on UTC-4, which overlaps a full US working day.
+      The fastest way to reach me is email.
     </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="mailto:joeljarro2@gmail.com" class="btn-primary">joeljarro2@gmail.com</a>
+      <a href="https://github.com/Quirrod" target="_blank" rel="noopener" class="btn-ghost">GitHub</a>
+      <a href="https://www.linkedin.com/in/joel-jarro/" target="_blank" rel="noopener" class="btn-ghost">LinkedIn</a>
+    </div>
   </div>
+
+  <p class="mt-10 text-center text-xs text-zinc-400 dark:text-zinc-600">
+    © {year} Joel Jarro · Built with Astro and Tailwind
+  </p>
 </section>

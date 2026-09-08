@@ -1,66 +1,69 @@
 ---
-import { work } from "../../data/work.json";
-import Iconoir from 'iconoir/icons/iconoir.svg';
+import { roles } from "../../data/portfolio";
 ---
-
-<section>
-  <div
-    class="text-zinc-500 text-xs flex flex-col lg:flex-row gap-4 justify-between w-full font-medium px-8 md:px-12 lg:px-24 py-6"
+<section id="top" class="mx-auto max-w-5xl px-6 pb-20 pt-20 sm:px-8 sm:pt-28">
+  <p
+    class="mb-5 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/60 px-3 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400"
+    data-reveal
   >
-    <div class="flex flex-row gap-4 justify-between">
-      <p>
-        <span>Joel</span>
-        <span>Jarro</span>
-      </p>
-      <p>
-        <span>Web</span>
-        <span>Developer</span>
-      </p>
-    </div>
-    <p class="flex flex-row gap-4 justify-between">
-      <a href='https://github.com/Quirrod' target='_blank'>
-        <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="#000000"><path stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M21 8v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5ZM7 17v-7"></path><path stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M11 17v-3.25M11 10v3.75m0 0c0-3.75 6-3.75 6 0V17M7 7.01l.01-.011"></path></svg>
-      </a>
-      <a href='https://www.linkedin.com/in/joel-jarro/' target='_blank'>
-        <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="#000000"><path stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path><path stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M14.333 19v-1.863c.025-.31-.018-.62-.126-.913a2.18 2.18 0 0 0-.5-.781c2.093-.227 4.293-1 4.293-4.544 0-.906-.358-1.778-1-2.434a3.211 3.211 0 0 0-.06-2.448s-.787-.227-2.607.961a9.152 9.152 0 0 0-4.666 0c-1.82-1.188-2.607-.96-2.607-.96A3.211 3.211 0 0 0 7 8.464a3.482 3.482 0 0 0-1 2.453c0 3.519 2.2 4.291 4.293 4.544a2.18 2.18 0 0 0-.496.773 2.134 2.134 0 0 0-.13.902V19"></path><path stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9.667 17.702c-2 .631-3.667 0-4.667-1.948"></path></svg>
-      </a>
-      <a class="underline" href="mailto:joelqjarroq@gmail.com" target='_blank'
-        >joelqjarroq@gmail.com</a
-      >
-    </p>
-  </div>
-  <div class="px-8 md:px-12 lg:px-24 pb-24 text-center mx-auto text-zinc-500">
-    <p class="max-w-xl text-zinc-500 text-xl mx-auto font-serif">
-      <em>
-        👋 Hey there! I'm a web developer focused on creating awesome user
-        experiences using React and Angular. 💻 I'm passionate about writing
-        clean, efficient code that brings ideas to life.
-      </em>
-    </p>
+    <span class="relative flex h-1.5 w-1.5">
+      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
+      <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+    </span>
+    La Paz, Bolivia · UTC-4 · open to remote
+  </p>
 
-    <div
-      class="grid grid-cols-1 gap-4 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-24 max-w-7xl mx-auto"
-    >
-      {
-        work.map((template) => (
-          <>
-            <a
-              href={template.link}
-              class="bg-zinc-100 rounded-md overflow-hidden "
-            >
-              <div class="p-4 lg:px-12 lg:py-24 ">
-                <img
-                  class=" rounded-lg shadow hover:shaodow-3xl duration-500 hover:-translate-y-4"
-                  src={template.img}
-                  alt={template.title}
-                />
-                <p class="text-zinc-500 text-sm mt-8"> {template.title}</p>
-                <p class="text-zinc-500 text-sm">{template.description}</p>
-              </div>
-            </a>
-          </>
-        ))
-      }
-    </div>
+  <h1
+    class="max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight text-zinc-900 sm:text-6xl dark:text-white"
+    data-reveal
+    style="--reveal-delay: 60ms"
+  >
+    Software engineer who builds
+    <span class="relative inline-block">
+      <span class="rotator text-orange-600 dark:text-orange-400" aria-live="polite">
+        {roles.map((r, i) => (
+          <span class="rotator-item" data-i={i} aria-hidden={i !== 0 ? "true" : "false"}>{r}</span>
+        ))}
+      </span>
+    </span>
+  </h1>
+
+  <p
+    class="mt-7 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400"
+    data-reveal
+    style="--reveal-delay: 140ms"
+  >
+    Four years across backend and full-stack systems in <strong class="font-medium text-zinc-900 dark:text-zinc-200">TypeScript, NestJS and Node.js</strong>,
+    and <strong class="font-medium text-zinc-900 dark:text-zinc-200">Java 21 with Spring Boot</strong>, over PostgreSQL and MySQL.
+    I like the problems where being approximately right is a failure: tax documents that must file, revenue figures a
+    customer will read, integrations against APIs that go down on their own schedule.
+  </p>
+
+  <div class="mt-9 flex flex-wrap items-center gap-3" data-reveal style="--reveal-delay: 220ms">
+    <a href="#work" class="btn-primary">See the work</a>
+    <a href="https://github.com/Quirrod" target="_blank" rel="noopener" class="btn-ghost">GitHub</a>
+    <a href="https://www.linkedin.com/in/joel-jarro/" target="_blank" rel="noopener" class="btn-ghost">LinkedIn</a>
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    var wrap = document.querySelector(".rotator");
+    if (!wrap) return;
+    var items = wrap.querySelectorAll(".rotator-item");
+    if (items.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      items[0].classList.add("is-active");
+      return;
+    }
+    var i = 0;
+    items[0].classList.add("is-active");
+    setInterval(function () {
+      items[i].classList.remove("is-active");
+      items[i].setAttribute("aria-hidden", "true");
+      i = (i + 1) % items.length;
+      items[i].classList.add("is-active");
+      items[i].setAttribute("aria-hidden", "false");
+    }, 2600);
+  })();
+</script>
