@@ -1,9 +1,9 @@
 ---
 import "../styles/global.css";
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const title = "Joel Jarro — Software Engineer";
+const title = "Joel Jarro — React & Full-Stack Engineer";
 const description =
-  "Software engineer in La Paz, Bolivia. Backend and full-stack systems in TypeScript, NestJS, Node.js and Java 21 with Spring Boot, third-party platform integrations, and data correctness where approximately right is a failure.";
+  "Software engineer in La Paz, Bolivia, open to remote. React and TypeScript web products with the Node.js, NestJS and Java 21 backend behind them, third-party platform integrations, and data correctness where approximately right is a failure.";
 const url = "https://quirrod.github.io/myfolio/";
 ---
 
@@ -40,5 +40,14 @@ const url = "https://quirrod.github.io/myfolio/";
       var dark = s ? s === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
       document.documentElement.classList.toggle("dark", dark);
     } catch (e) {}
+    /* Content is visible by default; only hide it for the reveal animation once JS runs,
+       and show everything if the reveal script has not run within 3 s. */
+    document.documentElement.classList.add("js");
+    setTimeout(function () {
+      document.querySelectorAll("[data-reveal]:not(.is-visible)").forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight) el.classList.add("is-visible");
+      });
+    }, 3000);
   })();
 </script>

@@ -67,7 +67,7 @@ const side = projects.filter((p) => p.kind === "Side project");
       <article class="card card-small" data-tags={p.tags.join("|")} data-tilt data-reveal style={`--reveal-delay:${i * 70}ms`}>
         <div class="card-glow"></div>
         <div class="card-body">
-          <div class="shot"><img src={p.img} alt={p.title} loading="lazy" decoding="async" /></div>
+          <div class="shot"><img src={p.img} alt={`Screenshot of ${p.title}`} width="1200" height="600" loading="lazy" decoding="async" /></div>
           <div class="card-text">
             <div class="card-top">
               <h3 class="card-title">{p.title}</h3>

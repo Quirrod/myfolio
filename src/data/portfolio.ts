@@ -14,7 +14,7 @@ export interface Project {
   diagram?: "crates" | "invoicing" | "modular" | "integrations";
 }
 
-const BASE = "https://quirrod.github.io/myfolio";
+const BASE = "/myfolio";
 
 export const projects: Project[] = [
   {
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     description:
       "I built and maintained integrations across Stripe, PayPal, Shopify, WooCommerce, HubSpot, Klaviyo, Zapier, Google Ads and more, covering webhook ingestion, OAuth connection flows, API pagination and event mapping. I also fixed the revenue-correctness defects those pipelines produced: mispriced imports, uncounted discounts and refunds, duplicated sales, currency mismatches and rounding errors.",
     diagram: "integrations",
-    tags: ["Java 21", "Spring Boot", "Integrations", "REST"],
+    tags: ["Java 21", "Spring", "Integrations", "REST"],
     year: "2023 — 2026",
     proprietary: true,
   },
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     kind: "Side project",
     description: "A web app for developers to collaborate, share code and get feedback on it.",
     link: "https://bugaboo-kohl.vercel.app",
-    img: `${BASE}/bugaboo-page.png`,
+    img: `${BASE}/bugaboo-page.webp`,
     tags: ["React", "TypeScript", "Full-stack"],
     year: "2024",
   },
@@ -84,7 +84,7 @@ export const projects: Project[] = [
     kind: "Side project",
     description: "Front end for a ticket-selling platform, deployed on the Internet Computer.",
     link: "https://pr27f-vqaaa-aaaan-qmhqa-cai.icp0.io/",
-    img: `${BASE}/extension_ticket.png`,
+    img: `${BASE}/extension_ticket.webp`,
     tags: ["React", "Front end", "Web3"],
     year: "2024",
   },
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     kind: "Side project",
     description: "A small, fast note-taking app.",
     link: "https://ensolver-challenge.vercel.app",
-    img: `${BASE}/ensolver.png`,
+    img: `${BASE}/ensolver.webp`,
     tags: ["React", "TypeScript"],
     year: "2023",
   },
@@ -127,7 +127,7 @@ export const experience: Role[] = [
     period: "Dec 2023 — Jul 2026",
     location: "Remote",
     points: [
-      "Full-stack work on a US ad-tracking and attribution SaaS: Java 21 and Spring monorepo with a React and TypeScript front end over MySQL, on AWS. Roughly 120 merged pull requests.",
+      "Full-stack work on a US ad-tracking and attribution SaaS: Java 21 and Spring monorepo with a React and TypeScript front end over MySQL, on AWS, working remote with a US team for 2.5 years.",
       "Built and maintained integrations with 20+ external platforms, covering webhook ingestion, OAuth flows, API pagination and event mapping.",
       "Fixed revenue-data correctness defects: mispriced imports, uncounted discounts and refunds, duplicated sales, currency mismatches and rounding errors.",
     ],
@@ -138,7 +138,7 @@ export const experience: Role[] = [
     period: "Jan 2023 — Aug 2024",
     location: "Remote",
     points: [
-      "Built full-stack applications with React, Angular, NestJS and TypeScript.",
+      "Built full-stack applications with React, Angular, NestJS and TypeScript, including reusable UI components wired to REST APIs.",
       "Took over production systems built by other teams: reconstructed the data model, API contracts and business flow before changing anything.",
     ],
   },
@@ -146,16 +146,16 @@ export const experience: Role[] = [
 
 export const skills: { group: string; items: string[] }[] = [
   {
+    group: "Front end",
+    items: ["React", "TypeScript", "JavaScript", "HTML/CSS", "Angular", "Tailwind", "Astro"],
+  },
+  {
     group: "Backend",
     items: ["TypeScript", "Node.js", "NestJS", "Express", "Java 21", "Spring Boot", "REST", "GraphQL"],
   },
   {
     group: "Data",
     items: ["PostgreSQL", "MySQL", "MongoDB", "TypeORM", "Hibernate/JPA", "Query optimisation"],
-  },
-  {
-    group: "Front end",
-    items: ["React", "Angular", "TypeScript", "Tailwind", "Astro"],
   },
   {
     group: "Ways of working",
@@ -171,20 +171,21 @@ export interface Stat {
 
 export const stats: Stat[] = [
   { value: 4, suffix: "", label: "years building production systems" },
-  { value: 120, suffix: "", label: "merged pull requests on one US SaaS" },
+  { value: 5, suffix: "", label: "business domains moved to a modular NestJS API" },
   { value: 20, suffix: "+", label: "external platforms integrated" },
   { value: 12, suffix: "", label: "crates in my board-game engine" },
 ];
 
 export const marquee = [
-  "TypeScript", "NestJS", "Node.js", "React", "Java 21", "Spring Boot",
+  "React", "TypeScript", "JavaScript", "Node.js", "NestJS", "Java 21", "Spring",
   "PostgreSQL", "MySQL", "GraphQL", "REST", "Docker", "AWS", "Rust",
   "TypeORM", "Claude Code", "Linux",
 ];
 
 export const roles = [
-  "backend systems",
+  "React interfaces",
+  "full-stack products",
   "third-party integrations",
-  "data correctness",
+  "systems that stay correct",
   "board-game engines",
 ];
