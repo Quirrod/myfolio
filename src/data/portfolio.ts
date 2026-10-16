@@ -61,12 +61,12 @@ export const projects: Project[] = [
   {
     title: "ChildFund Bolivia — National Climate Agenda 2025–2030",
     kind: "Client work",
-    context: "Page on childfundbolivia.org · WordPress and Elementor · 2025",
+    context: "Freelance, direct for ChildFund Bolivia · WordPress and Elementor",
     description:
       "I built the page presenting Bolivia's National Sustainability and Climate Action Agenda 2025–2030, written by young people from ChildFund's PACTO program at a national meeting in Tarija. It walks through the agenda's seven strategic axes and its 2025 to 2030 route, the mission and vision with video, the national goals, and animated counters for the meeting's participation, inside ChildFund Bolivia's existing site.",
     link: "https://childfundbolivia.org/agenda/",
     img: `${BASE}/childfund-agenda.webp`,
-    tags: ["WordPress", "Elementor", "Nonprofit"],
+    tags: ["WordPress", "Elementor", "Freelance", "Nonprofit"],
     year: "2025",
   },
   {
