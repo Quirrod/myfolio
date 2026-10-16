@@ -79,6 +79,7 @@ const side = projects.filter((p) => p.kind === "Side project");
               <h3 class="card-title">{p.title}</h3>
               <span class="card-year">{p.year}</span>
             </div>
+            {p.context && <p class="card-context">{p.context}</p>}
             <p class="card-desc">{p.description}</p>
             <div class="tags">{p.tags.map((t) => <span class="tag">{t}</span>)}</div>
             <div class="card-links">

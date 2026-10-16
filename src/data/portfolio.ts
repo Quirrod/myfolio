@@ -100,16 +100,20 @@ export const projects: Project[] = [
   {
     title: "Bugabooo",
     kind: "Side project",
-    description: "A web app for developers to collaborate, share code and get feedback on it.",
+    context: "Team of two · I wrote 97 of 134 commits, most of the front end",
+    description:
+      "Developers share code and get feedback on specific lines. I built the CodeMirror code viewer, comments anchored to a line and shown in a modal, upvotes and downvotes on code and comments, file upload, a My Codes page, pagination and the sign-up and login flow. Next.js, React Query and react-hook-form over a Strapi and PostgreSQL backend.",
     link: "https://bugaboo-kohl.vercel.app",
     img: `${BASE}/bugaboo-page.webp`,
-    tags: ["React", "TypeScript", "Full-stack"],
-    year: "2024",
+    tags: ["React", "Next.js", "TypeScript"],
+    year: "2023",
   },
   {
     title: "Extension Ticket",
     kind: "Side project",
-    description: "Front end for a ticket-selling platform, deployed on the Internet Computer.",
+    context: "Team of three · I built the events pages",
+    description:
+      "Event creation and ticket sales on the Internet Computer, with a Motoko backend and a React front end. My part was the events experience: the responsive upcoming-events grid, the event page's opening section, image components with blur and gradient overlays, image upload types, event routes and the not-found page. TanStack Router, React Query and NextUI.",
     link: "https://pr27f-vqaaa-aaaan-qmhqa-cai.icp0.io/",
     img: `${BASE}/extension_ticket.webp`,
     tags: ["React", "Front end", "Web3"],
@@ -118,10 +122,12 @@ export const projects: Project[] = [
   {
     title: "Knock Note",
     kind: "Side project",
-    description: "A small, fast note-taking app.",
+    context: "Solo · technical challenge for Ensolvers",
+    description:
+      "A full-stack notes app: create, edit, archive and delete notes, tag them, and search by tag across active and archived notes, with pagination. React with React Query, React Router and react-hook-form, over a NestJS REST API with TypeORM and PostgreSQL, plus a one-command run script.",
     link: "https://ensolver-challenge.vercel.app",
     img: `${BASE}/ensolver.webp`,
-    tags: ["React", "TypeScript"],
+    tags: ["React", "TypeScript", "NestJS", "PostgreSQL"],
     year: "2023",
   },
 ];
