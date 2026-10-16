@@ -1,7 +1,10 @@
 ---
 import { projects } from "../../data/portfolio";
 import Diagram from "./Diagram.astro";
-const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
+// A short, curated filter set: every tag stays on its card, but only these are filter chips.
+const FILTERS = ["React", "TypeScript", "NestJS", "Java 21", "PostgreSQL", "Integrations", "Architecture"];
+const used = new Set(projects.flatMap((p) => p.tags));
+const allTags = FILTERS.filter((t) => used.has(t));
 const engineering = projects.filter((p) => p.kind !== "Side project");
 const side = projects.filter((p) => p.kind === "Side project");
 ---
@@ -11,7 +14,7 @@ const side = projects.filter((p) => p.kind === "Side project");
       <p class="eyebrow">01 — Work</p>
       <h2 class="section-title">Selected work</h2>
       <p class="section-sub">
-        Client work is described without links or screenshots, since the systems are proprietary.
+        Proprietary client systems are described without links or screenshots.
       </p>
     </div>
     <div class="filters" role="group" aria-label="Filter by technology">
@@ -32,6 +35,9 @@ const side = projects.filter((p) => p.kind === "Side project");
         <div class="card-glow"></div>
         <div class="card-body">
           {p.diagram && <Diagram kind={p.diagram} />}
+          {!p.diagram && p.img && (
+            <div class="shot shot-wide"><img src={p.img} alt={`Screenshot of ${p.title}`} width="1200" height="750" loading="lazy" decoding="async" /></div>
+          )}
           <div class="card-text">
             <div class="card-top">
               <span class:list={["kind", p.proprietary && "kind-client"]}>{p.kind}</span>
@@ -48,7 +54,7 @@ const side = projects.filter((p) => p.kind === "Side project");
             <div class="tags">{p.tags.map((t) => <span class="tag">{t}</span>)}</div>
             <div class="card-links">
               {p.repo && <a href={p.repo} target="_blank" rel="noopener" class="link-arrow">Read the code</a>}
-              {p.link && <a href={p.link} target="_blank" rel="noopener" class="link-arrow">Live site</a>}
+              {p.link && <a href={p.link} target="_blank" rel="noopener" class="link-arrow">{p.linkLabel ?? "Live site"}</a>}
               {p.proprietary && <span class="no-link">Proprietary — no public link</span>}
             </div>
           </div>

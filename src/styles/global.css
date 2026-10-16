@@ -218,6 +218,7 @@ em { font-family: "Instrument Serif", Newsreader, serif; font-style: italic; fon
 .shot { overflow: hidden; border-radius: 0.7rem; border: 1px solid var(--line); background: var(--bg-soft); }
 .shot img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; object-position: top; transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
 .card:hover .shot img { transform: scale(1.045); }
+@media (min-width: 768px) { .card-wide .shot-wide { width: 22rem; flex-shrink: 0; } }
 
 .crates { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0.4rem; flex-shrink: 0; }
 @media (min-width: 768px) { .card-featured .crates { width: 16rem; } }

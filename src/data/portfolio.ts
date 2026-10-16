@@ -1,10 +1,11 @@
 export interface Project {
   title: string;
-  kind: "Personal project" | "Client work" | "Side project";
+  kind: "Product" | "Personal project" | "Client work" | "Side project";
   context?: string;
   problem?: string;
   description: string;
   link?: string;
+  linkLabel?: string;
   repo?: string;
   img?: string;
   tags: string[];
@@ -18,6 +19,21 @@ const BASE = "/myfolio";
 
 export const projects: Project[] = [
   {
+    title: "Kipu — parcel-tracking SaaS for Bolivian terminal couriers",
+    kind: "Product",
+    context: "My own product · React, NestJS, PostgreSQL · in staging",
+    problem:
+      "Parcel companies at Bolivian bus terminals still track shipments in notebooks and receipt books, and their customers have to call to find out where a parcel is. Counter staff work in a hurry, on phones or old computers, often without signal.",
+    description:
+      "I am building it end to end: three React apps (the company panel as an offline-capable PWA, the superadmin panel, and a public tracking page that takes each company's branding) over a NestJS API on Fastify and PostgreSQL, with row-level security isolating every company. It covers the whole parcel cycle: priced registration, labels, dispatch manifests, receiving at destination, WhatsApp notices with a pickup PIN, payment and the daily cash close. 50 architecture decision records, 40 Playwright end-to-end flows and 92 unit-test files keep it honest.",
+    link: "https://137-184-226-175.sslip.io/",
+    linkLabel: "Live demo (staging)",
+    img: `${BASE}/kipu.webp`,
+    tags: ["React", "TypeScript", "NestJS", "PostgreSQL", "PWA", "Playwright"],
+    year: "2026 — present",
+    featured: true,
+  },
+  {
     title: "BGG — digital board-game engine",
     kind: "Personal project",
     context: "Rust, in progress",
@@ -30,6 +46,17 @@ export const projects: Project[] = [
     tags: ["Rust", "Architecture", "VM design", "Game engine"],
     year: "2026 — present",
     featured: true,
+  },
+  {
+    title: "SubLab Bolivia — website, catalog and quotes",
+    kind: "Client work",
+    context: "Freelance · sublimation and custom-products business",
+    description:
+      "I built the business's site in Astro: product lines, ordering process, gallery and quote requests, with SEO metadata, Open Graph and structured data. Then a digital catalog driven by one JSON product database, a Canva app for editing designs from that catalog, quotation PDFs rendered with Puppeteer, and online payment for quotes through Polar.",
+    link: "https://www.sublabbolivia.com",
+    img: `${BASE}/sublab.webp`,
+    tags: ["Astro", "TypeScript", "Freelance", "Payments"],
+    year: "2025 — 2026",
   },
   {
     title: "Electronic tax-invoicing integration",
